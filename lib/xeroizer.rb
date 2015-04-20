@@ -41,7 +41,7 @@ end
 # Include payroll models
 ['home_address', 'bank_account', 'employee', 'timesheet', 'timesheet_line', 'number_of_unit',
   'leave_application', 'leave_period', 'pay_items', 'deduction_type', 'earnings_rate',
-  'reimbursement_type', 'leave_type', 'payroll_calendar', 'pay_template', 'super_membership',
+  'reimbursement_type', 'leave_type', 'pay_schedule', 'payroll_calendar', 'pay_template', 'super_membership',
   'leave_line', 'reimbursement_line', 'super_line', 'deduction_line', 'earnings_line', 'opening_balance',
   'pay_run', 'settings', 'tracking_categories', 'employee_groups', 'timesheet_categories', 'account',
   'tax_declaration', 'payslip', 'timesheet_earnings_line', 'tax_line', 'leave_accrual_line', 'superannuation_line'].each do |payroll_model|
