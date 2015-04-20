@@ -1,5 +1,5 @@
 module Xeroizer
-  class PayrollApplication
+  class PayrollUSApplication
     
     attr_reader :application
 
@@ -18,7 +18,7 @@ module Xeroizer
       define_method record_type do
         var_name = "@#{record_type}_cache".to_sym
         unless instance_variable_defined?(var_name)
-          instance_variable_set(var_name, Xeroizer::Record::Payroll.const_get("#{record_type}Model".to_sym).new(self.application, record_type.to_s))
+          instance_variable_set(var_name, Xeroizer::Record::Payroll::US.const_get("#{record_type}Model".to_sym).new(self.application, record_type.to_s))
         end
         instance_variable_get(var_name)
       end  
@@ -27,12 +27,13 @@ module Xeroizer
     record :Employee
     record :Timesheet
     record :PayItem
-    record :PayrollCalendar
+    record :PaySchedule
     record :LeaveApplication
     record :PayRun
     record :Payslip
     record :Setting
-    
+    record :WorkLocation
+
     def initialize(application)
       @application = application
     end

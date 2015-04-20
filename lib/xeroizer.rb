@@ -23,9 +23,11 @@ require 'xeroizer/exceptions'
 
 require 'xeroizer/record/base_model'
 require 'xeroizer/record/payroll_base_model'
+require 'xeroizer/record/payroll_us_base_model'
 require 'xeroizer/record/payroll_array_base_model'
 require 'xeroizer/record/base'
 require 'xeroizer/record/payroll_base'
+require 'xeroizer/record/payroll_us_base'
 require 'xeroizer/record/payroll_array_base'
 require 'xeroizer/configuration'
 
@@ -38,14 +40,24 @@ require 'xeroizer/configuration'
     require "xeroizer/models/#{model}"
 end
 
-# Include payroll models
+# Include AU payroll models
 ['home_address', 'bank_account', 'employee', 'timesheet', 'timesheet_line', 'number_of_unit',
   'leave_application', 'leave_period', 'pay_items', 'deduction_type', 'earnings_rate',
-  'reimbursement_type', 'leave_type', 'pay_schedule', 'payroll_calendar', 'pay_template', 'super_membership',
+  'reimbursement_type', 'leave_type', 'payroll_calendar', 'pay_template', 'super_membership',
   'leave_line', 'reimbursement_line', 'super_line', 'deduction_line', 'earnings_line', 'opening_balance',
   'pay_run', 'settings', 'tracking_categories', 'employee_groups', 'timesheet_categories', 'account',
   'tax_declaration', 'payslip', 'timesheet_earnings_line', 'tax_line', 'leave_accrual_line', 'superannuation_line'].each do |payroll_model|
     require "xeroizer/models/payroll/#{payroll_model}"
+end
+
+# Include US payroll models
+['home_address', 'bank_account', 'employee', 'timesheet', 'timesheet_line', 'number_of_unit',
+ 'leave_application', 'leave_period', 'pay_items', 'deduction_type', 'earnings_rate',
+ 'reimbursement_type', 'leave_type', 'pay_schedule', 'pay_template', 'super_membership',
+ 'leave_line', 'reimbursement_line', 'salary_and_wage', 'super_line', 'deduction_line', 'earnings_line', 'opening_balance',
+ 'pay_run', 'settings', 'tracking_categories', 'employee_groups', 'timesheet_categories', 'account',
+ 'tax_declaration', 'payslip', 'timesheet_earnings_line', 'tax_line', 'leave_accrual_line', 'superannuation_line', 'work_location'].each do |payroll_model|
+  require "xeroizer/models/payroll/us/#{payroll_model}"
 end
 
 require 'xeroizer/report/factory'
@@ -57,3 +69,4 @@ require 'xeroizer/public_application'
 require 'xeroizer/private_application'
 require 'xeroizer/partner_application'
 require 'xeroizer/payroll_application'
+require 'xeroizer/payroll_us_application'
