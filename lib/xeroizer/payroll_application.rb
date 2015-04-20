@@ -28,6 +28,7 @@ module Xeroizer
     record :Timesheet
     record :PayItem
     record :PayrollCalendar
+    record :PaySchedule
     record :LeaveApplication
     record :PayRun
     record :Payslip
