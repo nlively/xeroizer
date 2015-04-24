@@ -16,9 +16,10 @@ module Xeroizer
 
           set_primary_key false
 
-          has_many :earnings_rates
+          has_many :earnings_types
+          #has_many :benefit_types
           has_many :deduction_types
-          has_many :leave_types
+          #has_many :time_off_types
           has_many :reimbursement_types
 
         end

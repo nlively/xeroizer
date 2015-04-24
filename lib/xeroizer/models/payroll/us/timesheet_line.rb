@@ -9,7 +9,7 @@ module Xeroizer
 
         class TimesheetLine < PayrollUSBase
 
-          guid :earnings_rate_id
+          guid :earnings_type_id
           guid :tracking_item_id
 
           has_array :number_of_units, :api_child_name => 'NumberOfUnit'

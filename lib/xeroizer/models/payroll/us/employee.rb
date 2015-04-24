@@ -30,8 +30,7 @@ module Xeroizer
           boolean :is_authorised_to_approve_timesheets
           string :occupation
           string :classification
-          guid :ordinary_earnings_rate_id
-          guid :payroll_calendar_id
+          guid :pay_schedule_id
           string :employee_group_name
           date :termination_date
           datetime_utc :updated_date_utc, :api_name => 'UpdatedDateUTC'
