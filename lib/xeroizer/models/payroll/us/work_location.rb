@@ -19,7 +19,7 @@ module Xeroizer
           string :city
           string :state
           decimal :latitude
-          decimal :latitude
+          decimal :longitude
           boolean :is_primary
 
         end
