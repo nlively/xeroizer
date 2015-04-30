@@ -93,7 +93,7 @@ module Xeroizer
 
         # Turn a record into its XML representation.
         def to_xml(b = Builder::XmlMarkup.new(:indent => 2))
-          optional_root_tag(parent.class.optional_xml_root_name, b) do |b|
+          result = optional_root_tag(parent.class.optional_xml_root_name, b) do |b|
             b.tag!(model.class.xml_node_name || model.model_name) {
               attributes.each do |key, value|
                 field = self.class.fields[key]
@@ -102,6 +102,8 @@ module Xeroizer
               end
             }
           end
+
+          result
         end
 
         protected
@@ -168,10 +170,14 @@ module Xeroizer
             when :has_many
               if value.size > 0
                 sub_parent = value.first.parent
-                b.tag!(sub_parent.class.xml_root_name || sub_parent.model_name.pluralize) do
+                name = sub_parent.class.xml_root_name || sub_parent.model_name.pluralize
+
+                b.tag!(name) do
+                  compiled = ''
                   value.each do |record|
-                    return record.to_xml(b)
+                    compiled << record.to_xml(b)
                   end
+                  return compiled
                 end
                 nil
               end
