@@ -18,6 +18,7 @@ module Xeroizer
           string :suit_or_apt_or_unit, :internal_name => :unit
           string :city
           string :state
+          string :zip
           decimal :latitude
           decimal :longitude
           boolean :is_primary
