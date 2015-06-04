@@ -9,7 +9,8 @@ module Xeroizer
     end
 
     def self.us_payroll
-      ['Employees', 'PayItems', 'PaySchedules', 'PayRuns', 'Paystubs', 'Worklocations', 'Settings', 'Timesheets'].map {|s| "payroll.#{s.downcase}"}.join(',')
+      ['Employees', 'Timesheets', 'Settings', 'PayItems', 'PayRuns', 'PaySchedules', 'Paystubs', 'Worklocations'].map {|s| "payroll.#{s.downcase}"}.join(',')
     end
+
   end
 end
