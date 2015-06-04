@@ -371,9 +371,6 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<tzinfo>, [">= 0"])
       s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
-      s.add_runtime_dependency(%q<oauth>, [">= 0.3.6"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
-      s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
