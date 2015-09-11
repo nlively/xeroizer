@@ -5,8 +5,8 @@ module Xeroizer
 
     include Http
     extend Record::ApplicationHelper
-
-    attr_reader :client, :rate_limit_sleep, :rate_limit_max_attempts
+  
+    attr_reader :client, :rate_limit_sleep, :rate_limit_max_attempts, :default_headers, :unitdp
     attr_writer :xero_url_prefix, :xero_url_suffix
     attr_accessor :logger
 
@@ -17,9 +17,11 @@ module Xeroizer
     record :Attachment
     record :BrandingTheme
     record :Contact
+    record :ContactGroup
     record :CreditNote
     record :Currency
     record :Employee
+    record :ExpenseClaim
     record :Invoice
     record :Item
     record :Journal
@@ -27,9 +29,13 @@ module Xeroizer
     record :Organisation
     record :User
     record :Payment
+    record :Prepayment
+    record :Receipt
     record :TaxRate
     record :TrackingCategory
+    record :TrackingCategoryChild
     record :BankTransaction
+    record :User
 
     report :AgedPayablesByContact
     report :AgedReceivablesByContact
@@ -43,18 +49,20 @@ module Xeroizer
 
     public
 
-    # Never used directly. Use sub-classes instead.
-    # @see PublicApplication
-    # @see PrivateApplication
-    # @see PartnerApplication
-    def initialize(consumer_key, consumer_secret, options = {})
-      @xero_url_prefix = options[:xero_url_prefix] || "https://api.xero.com"
-      @xero_url_suffix = options[:xero_url_suffix] || "api.xro/2.0"
-      @rate_limit_sleep = options[:rate_limit_sleep] || false
-      @rate_limit_max_attempts = options[:rate_limit_max_attempts] || 5
-      @client = OAuth.new(consumer_key, consumer_secret, options)
-      @logger = options[:logger] || false
-    end
+      # Never used directly. Use sub-classes instead.
+      # @see PublicApplication
+      # @see PrivateApplication
+      # @see PartnerApplication
+      def initialize(consumer_key, consumer_secret, options = {})
+        @xero_url_prefix = options[:xero_url_prefix] || "https://api.xero.com"
+        @xero_url_suffix = options[:xero_url_suffix] || "api.xro/2.0"
+        @rate_limit_sleep = options[:rate_limit_sleep] || false
+        @rate_limit_max_attempts = options[:rate_limit_max_attempts] || 5
+        @default_headers = options[:default_headers] || {}
+        @client   = OAuth.new(consumer_key, consumer_secret, options.merge({default_headers: default_headers}))
+        @logger = options[:logger] || false
+        @unitdp = options[:unitdp] || 2
+      end
 
     def payroll(options = {})
       xero_client = self.clone
