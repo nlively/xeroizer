@@ -32,7 +32,7 @@ module Xeroizer
 
     unless defined? XERO_CONSUMER_OPTIONS
       XERO_CONSUMER_OPTIONS = {
-        :site               => "https://api.xero.com",
+        :site               => "https://sha2-api.xero.com",
         :request_token_path => "/oauth/RequestToken",
         :access_token_path  => "/oauth/AccessToken",
         :authorize_path     => "/oauth/Authorize",

@@ -14,7 +14,7 @@ class TaxRateTest < Test::Unit::TestCase
 
   should "build and save a tax rate with components via PUT" do
     @client.expects(:http_post).with { |client, url, body, extra_params|
-      url == "https://api.xero.com/api.xro/2.0/TaxRates" &&
+      url == "https://sha2-api.xero.com/api.xro/2.0/TaxRates" &&
         body == expected_tax_rate_create_body
     }.returns(tax_rate_create_successful_response)
 
